@@ -1,9 +1,7 @@
 version: "3.9"
 services:
   backend:
-    build: 
-      context: ./
-      dockerfile: docker/tf-cpu-infer/Dockerfile
+    build: .
     ports:
       - "8000:8000"
     environment:
