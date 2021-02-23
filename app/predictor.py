@@ -14,16 +14,17 @@ class Predictor:
         
         self.model = tf.keras.models.load_model(self.MODEL_FILE)
 
-    def predict_image(self, image):
+    def predict_image(self, image, n_top=3):
         pred = self.model.predict(image.reshape(-1, self.IMG_SIZE, self.IMG_SIZE, 3))
-        
-        if len(self.labels) > 3:
-            top_three = np.argsort(pred, axis=1)[0, -3:]
-            for label in top_three:
-                print(f'{self.labels[label]}: {pred[0,label]}')
+        top_labels = {}
+        if len(self.labels) >= n_top:
+            top_labels_ids = np.flip(np.argsort(pred, axis=1)[0, -3:])
+            for label_id in top_labels_ids:
+                top_labels[self.labels[label_id]] = pred[0,label_id].item()
         pred_label = self.labels[np.argmax(pred)]
-        return pred_label
+        print(top_labels)
+        return {'label': pred_label, 'top': top_labels}
 
-    def predict_file(self, file):
+    def predict_file(self, file, n_top=3):
         img = np.array(Image.open(file).resize((self.IMG_SIZE,self.IMG_SIZE)), dtype=np.float32)
-        return self.predict_image(img)
+        return self.predict_image(img, n_top)
