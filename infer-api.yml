@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  backend:
+    build: 
+      context: ./
+      dockerfile: docker/tf-cpu-infer/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: "8000"
+      K_SERVICE: "local"
+      K_CONFIGURATION: "local"
+      K_REVISION: "local-00001"
