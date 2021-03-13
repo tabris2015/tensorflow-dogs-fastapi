@@ -3,7 +3,7 @@ services:
   tf-gpu:
     build: 
       context: ./
-      dockerfile: ./docker/tf-cpu-infer/Dockerfile
+      dockerfile: ./docker/tf-gpu-train/Dockerfile
     ports:
       - "8888:8888"
     volumes:
