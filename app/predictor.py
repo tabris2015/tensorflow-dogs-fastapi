@@ -4,7 +4,7 @@ import tensorflow as tf
 
 class Predictor:
     BREED_FILE = 'app/breeds.txt'
-    MODEL_FILE = 'app/models/best_local1.h5'
+    MODEL_FILE = 'app/models/best_local_refined.h5'
     IMG_SIZE = 224
     def __init__(self):
         self.labels = []
