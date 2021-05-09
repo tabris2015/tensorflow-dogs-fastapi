@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  tf-gpu-jetson:
+    build: 
+      context: ./
+      dockerfile: ./docker/tf-gpu-infer-jetson/Dockerfile
+    ports:
+      - "8888:8888"
+    environment:
+      PORT: "8000"
+      K_SERVICE: "local"
+      K_CONFIGURATION: "local"
+      K_REVISION: "local-00001"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities:
+              - gpu
