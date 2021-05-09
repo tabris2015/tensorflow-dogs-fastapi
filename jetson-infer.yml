@@ -5,7 +5,7 @@ services:
       context: ./
       dockerfile: ./docker/tf-gpu-infer-jetson/Dockerfile
     ports:
-      - "8888:8888"
+      - "8000:8000"
     environment:
       PORT: "8000"
       K_SERVICE: "local"
